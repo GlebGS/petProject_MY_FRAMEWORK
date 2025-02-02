@@ -11,6 +11,8 @@ class App {
     {
         self::$app = Registry::getInstance();
         
+        new ErrorHandler;
+        
         $this->getParams();
     }
     

@@ -4,8 +4,18 @@
             "App\\": "App",
             "Core\\": "vendor/Core"
         }
-    },
+    },  
     "require": {
-        
+        "twbs/bootstrap": "5.0.2",
+        "gabordemooij/redbean": "^v5.7.4"
+    },
+    "scripts": {
+        "post-update-cmd": [
+            "rm -rf Public/bootstrap",
+            "cp -R vendor/twbs/bootstrap/dist Public/bootstrap"
+        ]
+    },
+    "require-dev": {
+        "phpunit/php-invoker": "^5.0"
     }
 }

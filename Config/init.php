@@ -3,6 +3,7 @@
 define("ROOT", dirname(__DIR__));
 
 define("DEBUG", 1);
+define("WRITE_LOGS", 0);
 
 define("FLAG_A", 0b0001); // 1
 define("FLAG_B", 0b0010); // 2
