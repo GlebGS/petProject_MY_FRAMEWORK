@@ -2,17 +2,8 @@
 
 namespace Core;
 
-class EncryptionHandler
-{
-
-    /**
-     * // Для передачи/хранения
-     * base64_encode($encryptedData);
-     * 
-     * // Перед расшифровкой
-     * base64_decode($base64Encrypted);
-     */
-    
+class SymmetricEncryptionHandler
+{    
     private string $key;
     
     private string $encryptedData = '';
@@ -27,7 +18,7 @@ class EncryptionHandler
         {
             if (strlen($key) !== SODIUM_CRYPTO_SECRETBOX_KEYBYTES)
             {
-                throw new InvalidArgumentException('Неверная длина ключа. Ожидается ' . SODIUM_CRYPTO_SECRETBOX_KEYBYTES . ' байты.');
+                throw new InvalidArgumentException("Неверная длина ключа. Ожидается " . SODIUM_CRYPTO_SECRETBOX_KEYBYTES . " байты.");
             }
             
             $this->key = $key;
