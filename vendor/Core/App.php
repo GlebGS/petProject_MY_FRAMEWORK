@@ -2,27 +2,25 @@
 
 namespace Core;
 
-class App {
-    
+class App
+{
+
     public static $app;
-    
-    public function __construct() 
-    {           
+
+    public function __construct()
+    {
         self::$app = Registry::getInstance();
-        
+
         $this->getParams();
-        
-        if(ERROR_HANDLER_PARAMS & FLAG_A){
-            new ErrorHandler();
-        }
-        
+
+        new ErrorHandler();
     }
-    
+
     private function getParams()
     {
         $params = require_once CONFIG . "/params.php";
 
-        if(!empty($params))
+        if (!empty($params))
         {
             foreach ($params as $k => $v) {
                 self::$app->setProperty($k, $v);
