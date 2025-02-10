@@ -2,7 +2,7 @@
 
 namespace Core;
 
-class Crypto
+class EncryptionHandler
 {
 
     /**
