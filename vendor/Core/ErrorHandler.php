@@ -2,64 +2,52 @@
 
 namespace Core;
 
-class ErrorHandler {
+class ErrorHandler
+{
     
-    public function __construct() 
+    private $logFile = LOGS . "/error.log";
+
+    public function __construct()
     {
-        if(DEBUG)
-        {
-            error_reporting(-1);
-        }else{
-            error_reporting(0);
-        }
-        
-        set_error_handler([$this, "handlerError"]);
-        set_exception_handler([$this, "handlerException"]);
-        register_shutdown_function([$this, "handlerShutdown"]);
+        (DEBUG) ? error_reporting(-1) : error_reporting(0);
+
+        set_error_handler([$this, "errorHandler"]);
+        set_exception_handler([$this, "exceptionHandler"]);
+
+        register_shutdown_function([$this, "shutdownHandler"]);
     }
-    
-    /**
-     * @param int $errno
-     * @param string $errstr
-     * @param string $errfile
-     * @param int $errline
-     */
-    protected function handlerError($errno, $errstr, $errfile, $errline) 
+
+    public function errorHandler($errstr, $errfile, $errline)
     {
-        $this->logError("Error: [{$errno}] {$errstr} in {$errfile} on line {$errline}");
+        $this->logError($errstr, $errfile, $errline);
     }
-    
-    /**
-     * @param Throwable $exception
-     */
-    protected function handlerException($exception) 
+
+    public function exceptionHandler(\Throwable $exception)
     {
-        $this->logError("Exception: " . $exception->getMessage() . " in " . $exception->getFile() . " on line " . $exception->getLine());
+        $this->logError($exception->getMessage(), $exception->getFile(), $exception->getLine());
     }
-    
-    protected function handlerShutdown() 
+
+    public function shutdownHandler()
     {
         $error = error_get_last();
-        
-        if ($error && in_array($error['type'], [E_ERROR, E_PARSE, E_CORE_ERROR, E_COMPILE_ERROR]))
+
+        if (!empty($error) && $error['type'] & (E_USER_ERROR | E_PARSE | E_COMPILE_ERROR | E_CORE_ERROR))
         {
-            $this->logError("Fatal Error: [{$error['type']}] {$error['message']} in {$error['file']} on line {$error['line']}");
+            $this->logError($errstr, $errfile, $errline);
         }
     }
-    
-    /**
-     * @param string $message
-     */
-    protected function logError($message) 
+
+    public function logError($message = '', $file = '', $line = '')
     {
-        if(WRITE_LOGS)
-        {
-            return file_put_contents(
-                LOGS . "/error.log", "[" . date("Y-m-d H:i:s") . "] Ошибка: {$message}\n==========================\n",
-                FILE_APPEND
-            );
-        }   
-        
-        return true;
+        return file_put_contents(
+            $this->logFile,
+            "[" . date("Y-m-d H:i:s") . "] Текст ошибки: {$message} | Файл: {$file} | Строка: {$line}\n=================\n",
+            FILE_APPEND);
+    }
+    
+    public function __destruct()
+    {
+        restore_error_handler();
+        restore_exception_handler();
     }
 }

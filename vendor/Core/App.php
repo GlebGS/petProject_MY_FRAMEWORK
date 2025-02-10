@@ -5,15 +5,17 @@ namespace Core;
 class App {
     
     public static $app;
-    public static array $params = [];
-
+    
     public function __construct() 
-    {
+    {           
         self::$app = Registry::getInstance();
         
-        new ErrorHandler;
-        
         $this->getParams();
+        
+        if(ERROR_HANDLER_PARAMS & FLAG_A){
+            new ErrorHandler();
+        }
+        
     }
     
     private function getParams()
