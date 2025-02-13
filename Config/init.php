@@ -7,9 +7,6 @@ define("FLAG_B", 0b0010); // 2
 define("FLAG_C", 0b0100); // 4
 define("FLAG_D", 0b1000); // 8
 
-//ErrorHandler Params
-define("DEBUG", true);
-
 define("APP", ROOT . "/App");
 define("CACHE", ROOT . "/tmp");
 define("WWW", ROOT . "/Public");
@@ -18,6 +15,16 @@ define("LOGS", ROOT . "/tmp/logs");
 define("CONFIG", ROOT . "/Config");
 define("CORE", ROOT . "/vendor/Core");
 define("HELPERS", ROOT . "/vendor/Core/Helpers");
+
+//ErrorHandler params
+define("DEBUG", true);
+define("ERROR_LOG", false);
+define("LOG_FILE", LOGS . "/error.log");
+
+// FileHandler param
+define("CHUNK_SIZE", 4096);
+define("DECRYPTED_FILE", LOGS . "/decrypted.txt");
+define("ENCRYPTED_FILE", LOGS . "/encrypted.enc");
 
 define("LAYOUT", "FRAMEWORK");
 define("NO_IMAGE", "uploads/no_image.png");

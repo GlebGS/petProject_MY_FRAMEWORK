@@ -12,8 +12,10 @@ class App
         self::$app = Registry::getInstance();
 
         $this->getParams();
-
-        new ErrorHandler();
+        
+        if(ERROR_LOG){
+            new ErrorHandler();
+        }
     }
 
     private function getParams()

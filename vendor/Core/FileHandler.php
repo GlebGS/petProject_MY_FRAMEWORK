@@ -5,13 +5,13 @@ namespace Core;
 class FileHandler extends SymmetricEncryptionHandler
 {
 
-    protected $SEncrypt;
+    protected $encryptHandler;
 
     protected $file;
 
     public function __construct(string $pathFile)
     {
-        $this->SEncrypt = new SymmetricEncryptionHandler();
+        $this->encryptHandler = new SymmetricEncryptionHandler();
 
         if (!is_string($pathFile))
         {
@@ -26,32 +26,18 @@ class FileHandler extends SymmetricEncryptionHandler
         $this->file = $pathFile;
     }
 
-    /** 
-     * MODS
-     *   a,
-     *   w,
-     * 
-     *   if encode = false 
-     *      $mode = FILE_APPEND
-     *  */
     public function write(string $data, $mode = null, bool $encode = false)
     {
         if (file_exists($this->file))
         {
-
             if ($encode == true)
             {
-                $fp = fopen($this->file, $mode);
+                $this->encryptHandler->encrypt($data);
                 
-                stream_filter_append($fp, "convert.base64-encode");
-                stream_filter_append($fp, "zlib.deflate");
-
-                fwrite($fp, $data);
-
-                return fclose($fp);
+                return file_put_contents($this->file, $this->encryptHandler->getEncryptedData());
             }
 
-            return file_put_contents($this->file, $data, FILE_APPEND);
+            return file_put_contents($this->file, $data, $mode);
         }
 
         return false;
@@ -61,14 +47,9 @@ class FileHandler extends SymmetricEncryptionHandler
     {
         if (file_exists($this->file))
         {
-            if ($decode === true)
+            if ($decode)
             {
-                $fp = fopen($this->file, 'r');
-                
-                stream_filter_append($fp, "zlib.inflate");
-                stream_filter_append($fp, "convert.base64-decode");
-
-                return fread($fp, 4096);
+                return $this->encryptHandler->decrypt(file_get_contents($this->file));
             }
 
             return file_get_contents($this->file);
