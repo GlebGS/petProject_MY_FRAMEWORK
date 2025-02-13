@@ -65,3 +65,19 @@ class SymmetricEncryptionHandler
         return $this->key;
     }
 }
+
+//// Создаем экземпляр с автоматической генерацией ключа
+//$crypto = new SodiumCrypto();
+//
+//// Шифруем сообщение
+//$crypto->encrypt("Секретное сообщение");
+//
+//// Получаем зашифрованные данные
+//$encryptedData = $crypto->getEncryptedData();
+//
+//// Для демонстрации создадим новый объект с тем же ключом
+//$crypto2 = new SodiumCrypto($crypto->getKey());
+//$crypto2->setEncryptedData($encryptedData);
+//
+//// Расшифровываем сообщение
+//$decrypted = $crypto2->decrypt();

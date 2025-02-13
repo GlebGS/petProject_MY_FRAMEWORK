@@ -5,10 +5,15 @@ namespace Core;
 class ErrorHandler
 {
     
-    private $logFile = LOGS . "/error.log";
+    public $logFile = LOGS . "/error.log";
+
+    public $fileHandler;
+
 
     public function __construct()
     {
+        $this->fileHandler = new FileHandler($this->logFile);
+        
         (DEBUG) ? error_reporting(-1) : error_reporting(0);
 
         set_error_handler([$this, "errorHandler"]);
@@ -39,10 +44,9 @@ class ErrorHandler
 
     public function logError($message = '', $file = '', $line = '')
     {
-        return file_put_contents(
-            $this->logFile,
-            "[" . date("Y-m-d H:i:s") . "] Текст ошибки: {$message} | Файл: {$file} | Строка: {$line}\n=================\n",
-            FILE_APPEND);
+        $data = "[" . date("Y-m-d H:i:s") . "] Текст ошибки: {$message} | Файл: {$file} | Строка: {$line}\n=================\n";
+
+        return $this->fileHandler->write($data, FILE_APPEND);
     }
     
     public function __destruct()

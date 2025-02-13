@@ -25,11 +25,6 @@ class ErrorHandlerTest extends TestCase
 
         $this->logFile = LOGS . "/error.log";
 
-        if (file_exists($this->logFile))
-        {
-            unlink($this->logFile);
-        }
-
         $this->errorHandler = new ErrorHandler();
     }
 
