@@ -18,8 +18,17 @@ define("HELPERS", ROOT . "/vendor/Core/Helpers");
 
 //ErrorHandler params
 define("DEBUG", true);
-define("ERROR_LOG", false);
+
 define("LOG_FILE", LOGS . "/error.log");
+define("ERROR_404", WWW . "/errors/404.php");
+define("ERROR_500", WWW . "/errors/500.php");
+define("DEVELOPMENT_FILE", WWW . "/errors/dev.php");
+define("PRODACTION_FILE", WWW . "/errors/prod.php");
+
+//Router params
+define("CONTROLLERS_PATH", "App\Controllers\\");
+define("MODELS_PATH", "App\Models\\");
+define("VIEWS_PATH", "App\Views\\");
 
 // FileHandler param
 define("CHUNK_SIZE", 4096);
@@ -32,5 +41,6 @@ define("PATH", "https://my-framework.loc");
 define("ADMIN", "https://my-framework.loc/admin");
 
 require_once ROOT . "/vendor/autoload.php";
+
 require_once HELPERS . "/function.php";
 require_once CONFIG . "/routes.php";

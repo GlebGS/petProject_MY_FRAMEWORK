@@ -9,13 +9,14 @@ class App
 
     public function __construct()
     {
+
+        new ErrorHandler();
+
         self::$app = Registry::getInstance();
 
         $this->getParams();
         
-        if(ERROR_LOG){
-            new ErrorHandler();
-        }
+        Router::dispatch(trim(urldecode($_SERVER["REQUEST_URI"]), '/'));
     }
 
     private function getParams()

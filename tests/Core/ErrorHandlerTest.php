@@ -21,6 +21,7 @@ class ErrorHandlerTest extends TestCase
 
         define("DEBUG", true);
         define("ROOT", dirname(__DIR__));
+        
         define("LOGS", ROOT . "/tmp/logs");
 
         $this->logFile = LOGS . "/error.log";

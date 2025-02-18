@@ -11,12 +11,15 @@
     convertWarningsToExceptions    = "true"
     processIsolation               = "false"
     stopOnFailure                  = "false">
+    
     <testsuites>
-        <testsuite name = "FrameWork">
-            <directory> 
-                tests
-            </directory>    
+        <testsuite name="All">
+            <directory>tests</directory>
+        </testsuite>
+        <testsuite name="Core">
+            <directory>tests/Core</directory>
         </testsuite>
     </testsuites>
+    
 </phpunit>
 

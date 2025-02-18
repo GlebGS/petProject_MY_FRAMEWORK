@@ -18,7 +18,7 @@ class SymmetricEncryptionHandler
         {
             if (strlen($key) !== SODIUM_CRYPTO_SECRETBOX_KEYBYTES)
             {
-                throw new InvalidArgumentException("Неверная длина ключа. Ожидается " . SODIUM_CRYPTO_SECRETBOX_KEYBYTES . " байты.");
+                throw new \InvalidArgumentException("Неверная длина ключа. Ожидается " . SODIUM_CRYPTO_SECRETBOX_KEYBYTES . " байты.");
             }
             
             $this->key = $key;

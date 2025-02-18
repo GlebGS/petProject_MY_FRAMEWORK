@@ -10,6 +10,6 @@ trait TSingletone
     
     public static function getInstance()
     {
-        return self::$instance ?? self::$instance = new static();
+        return self::$instance ?? self::$instance = new self();
     }
 }

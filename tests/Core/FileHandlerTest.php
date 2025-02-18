@@ -1,6 +1,6 @@
 <?php
 
-namespace Test;
+namespace Tests;
 
 use Core\FileHandler;
 use PHPUnit\Framework\TestCase;
