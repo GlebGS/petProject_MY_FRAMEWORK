@@ -41,7 +41,7 @@ class Router
 
                 $controllerObject->getModel();
 
-                if (method_exists($controllerObject, $action))
+                if(method_exists($controllerObject, $action))
                 {
                     $controllerObject->$action();
                     $controllerObject->getView();
@@ -63,24 +63,24 @@ class Router
         foreach (self::$routes as $pattern => $route) {
             if (preg_match("#{$pattern}#", $url, $matches))
             {
-                foreach ($matches as $k => $v) {
-                    if (is_string($k))
+                foreach($matches as $k => $v) {
+                    if(is_string($k))
                     {
                         $route[$k] = $v;
                     }
                 }
 
-                if (empty($route['action']))
+                if (empty($route["action"]))
                 {
-                    $route['action'] = 'index';
+                    $route["action"] = "index";
                 }
-                if (!isset($route['admin_prefix']))
+                if (!isset($route["admin_prefix"]))
                 {
-                    $route['admin_prefix'] = '';
+                    $route["admin_prefix"] = '';
                 }
                 else
                 {
-                    $route['admin_prefix'] .= '\\';
+                    $route["admin_prefix"] .= '\\';
                 }
 
                 $route["controller"] = self::upperCamelCase($route["controller"]);

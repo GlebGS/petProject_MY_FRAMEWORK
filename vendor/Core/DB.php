@@ -6,7 +6,7 @@ use RedBeanPHP\R;
 
 class DB
 {
-    use TSingletone;
+    use Singleton;
     
     private function __construct()
     {

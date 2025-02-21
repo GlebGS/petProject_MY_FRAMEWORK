@@ -36,7 +36,7 @@ class FileHandler extends SymmetricEncryptionHandler
                 
                 return file_put_contents($this->file, $this->encryptHandler->getEncryptedData());
             }
-
+            
             return file_put_contents($this->file, $data, $mode);
         }
 

@@ -11,8 +11,6 @@ class MainController extends Controller
     public function indexAction()
     {
         
-        dd($this->model->all());
-        
         $this->setMeta("Main");
 
         $this->set([

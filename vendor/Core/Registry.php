@@ -4,7 +4,7 @@ namespace Core;
 
 class Registry {
     
-    use TSingletone;
+    use Singleton;
     
     private static array $properties = [];
     

@@ -2,10 +2,10 @@
 
 return [
     "db_params" => [
-        "dsn" => "pgsql:host=localhost;dbname=mydatabase",
+        "dsn" => "pgsql:host=localhost;dbname=test_db",
         "db" => "pgsql",
         "db_host" => "localhost",
-        "db_name" => "mydatabase",
+        "db_name" => "test_db",
         "db_username" => "user",
         "db_password" => "password"
     ],
