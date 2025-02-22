@@ -4,7 +4,6 @@ namespace Core;
 
 class FileHandler extends SymmetricEncryptionHandler
 {
-
     protected $encryptHandler;
 
     protected $file;
@@ -58,7 +57,7 @@ class FileHandler extends SymmetricEncryptionHandler
         return false;
     }
 
-    public function lock(int $lockLevel = 1, int $sleep = 0)
+    public function lock(int $lockLevel = 1, int $sleep = 0): bool
     {
         if (file_exists($this->file))
         {

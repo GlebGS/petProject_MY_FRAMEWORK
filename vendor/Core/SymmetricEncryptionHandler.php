@@ -39,7 +39,7 @@ class SymmetricEncryptionHandler
      * @param string $inputFile Файл из которого мы считываем данные и шифруем в другой.
      * @param string $outputFile Файл для записи зашифрованных данных.
      */
-    public function streamEncryption(string $inputFile, string $outputFile)
+    public function streamEncryption(string $inputFile, string $outputFile): void
     {
         $input = fopen($inputFile, "rb");
         $output = fopen($outputFile, "wb");
@@ -125,19 +125,3 @@ class SymmetricEncryptionHandler
         return $this->key;
     }
 }
-
-//// Создаем экземпляр с автоматической генерацией ключа
-//$crypto = new SymmetricEncryptionHandler();
-//
-//// Шифруем сообщение
-//$crypto->encrypt("Секретное сообщение");
-//
-//// Получаем зашифрованные данные
-//$encryptedData = $crypto->getEncryptedData();
-//
-//// Для демонстрации создадим новый объект с тем же ключом
-//$crypto2 = new SodiumCrypto($crypto->getKey());
-//$crypto2->setEncryptedData($encryptedData);
-//
-//// Расшифровываем сообщение
-//$decrypted = $crypto2->decrypt();

@@ -52,11 +52,6 @@ class ErrorHandler
         }
     }
 
-    /**
-     * Важный момент.
-     *      Перед тестированием не устанавливать влаг $encode = true
-     *       -> Тогда тестирование не пройдёт
-     *  */
     public function logError($message = '', $file = '', $line = '')
     {
         $data = "[" . date("Y-m-d H:i:s") . "] Текст ошибки: {$message} | Файл: {$file} | Строка: {$line}\n=================\n";
