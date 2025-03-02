@@ -30,10 +30,13 @@ define("CONTROLLERS_PATH", "App\Controllers\\");
 define("MODELS_PATH", "App\Models\\");
 define("VIEWS_PATH", "App\Views\\");
 
-// FileHandler param
+// FileHandler params
 define("CHUNK_SIZE", 4096);
 define("DECRYPTED_FILE", LOGS . "/decrypted.txt");
 define("ENCRYPTED_FILE", LOGS . "/encrypted.enc");
+
+// Date params
+define("DEFAULT_TIME_ZONE", date_default_timezone_set("Europe/Moscow"));
 
 define("LAYOUT", "FRAMEWORK");
 define("NO_IMAGE", "uploads/no_image.png");

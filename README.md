@@ -188,9 +188,43 @@ ___
     $file->delete();
 ```
 
+## Работа с классом Даты и Время. [DateTimeHandler.php](vendor/Core/DateTimeHandler.php)
+```php
+// Создание объектов
+    $date1 = new \Core\DateTimeHandler('2023-01-01');
+    $date2 = \Core\DateTimeHandler::now();
+    $date3 = \Core\DateTimeHandler::fromTimestamp(time());
+
+// Форматирование
+    echo $date1->format('Y-m-d H:i:s');
+
+// Манипуляции с датой
+    $date1->addDays(5)->subHours(3);
+    $date1->add(new DateInterval('P1M'));
+
+// Сравнение
+    if ($date1->isAfter($date2))
+    {
+        echo "Date1 is later than Date2";
+    }
+
+// Разница между датами
+    $interval = $date1->diff($date2);
+    echo $interval->format('%R%a days');
+
+// Проверка валидности даты
+    var_dump(\Core\DateTimeHandler::isValid('2023-02-30', 'Y-m-d'));
+```
+
+### Настройка параметров для Даты и Время [init.php](Config/init.php)
+```php
+// Date params
+    define("DEFAULT_TIME_ZONE", date_default_timezone_set("Europe/Moscow"));
+```
+
 ## Обработчик ошибок. [ErrorHandler.php](vendor/Core/ErrorHandler.php)
 
-### Настройка обработчика ошибок производиться в фалйе [init.php](Config/init.php)
+### Настройка обработчика ошибок производиться в файле [init.php](Config/init.php)
 ```php
 // Режим PROD(false) / DEV(true)
     define("DEBUG", true);
